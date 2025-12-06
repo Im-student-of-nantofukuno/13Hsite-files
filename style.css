@@ -4,7 +4,7 @@ body {
   line-height: 1.7;
   background: #cfc4b2;
   color: #2f2f2f;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 }
@@ -236,21 +236,42 @@ h1, h2, h3 {
 }
 
 @media screen and (max-width: 600px) {
-  /* 理由カードを縦並びにする */
+
+  /* スマホは文字を特大に（4倍） */
+  body {
+    font-size: 2.4rem; /* 1rem（16px）× 4 = 約64px 相当 */
+    line-height: 1.9;   /* 改行が詰まらないように調整 */
+  }
+
+  /* 見出しもさらに少し大きく */
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.6rem; }
+  h3 { font-size: 2.2rem; }
+
+  /* 理由カードを縦並びにする（スマホ用） */
   .reason-cards {
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
   }
 
   .reason-card {
     width: 100%;
     min-width: 0;
+    font-size: 2rem; /* さらに大きくして読みやすく */
+    padding: 30px;
   }
 
-  /* 本文もスマホでは少しだけ縮める（読みやすさ優先） */
-  body {
-    font-size: 1.2rem;
+  /* 目次の文字も見やすいように拡大 */
+  .toc {
+    font-size: 2rem;
+  }
+
+  /* 横並びのグラフ名（商品Aなど）も大きく */
+  .item-label {
+    font-size: 2rem;
   }
 }
+
+
 
 
