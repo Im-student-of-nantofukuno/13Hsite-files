@@ -233,40 +233,77 @@ h1, h2, h3 {
   margin-top: 20px;
 }
 
+/* ===== スマホ画面専用（幅600px以下） ===== */
 @media screen and (max-width: 600px) {
 
-  /* スマホは文字を特大に（4倍） */
+  /* スマホはさらに大きいフォントにする */
   body {
-    font-size: 2.4rem; /* 1rem（16px）× 4 = 約64px 相当 */
-    line-height: 1.9;   /* 改行が詰まらないように調整 */
+    font-size: 4.8rem;   /* ← 以前の2.4remよりさらに大きく */
+    line-height: 1.95;
   }
 
-  /* 見出しもさらに少し大きく */
-  h1 { font-size: 3.2rem; }
-  h2 { font-size: 2.6rem; }
-  h3 { font-size: 2.2rem; }
+  /* 見出しもそれに合わせて拡大 */
+  h1 { font-size: 5.0rem; }
+  h2 { font-size: 4.8rem; }
+  h3 { font-size: 3.6rem; }
 
-  /* 理由カードを縦並びにする（スマホ用） */
+  /* 目次 */
+  .toc {
+    font-size: 2.6rem;
+    padding: 30px;
+  }
+
+  /* 商品名（商品Aなど） */
+  .item-label {
+    font-size: 2.6rem;
+  }
+
+  /* 棒グラフの凡例（好きな商品 / おいしそうな商品） */
+  .graph-legend {
+    font-size: 2.4rem;
+    gap: 30px;
+  }
+
+  .legend-box {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* 理由カードは縦に並べる */
   .reason-cards {
     flex-direction: column;
-    gap: 25px;
+    gap: 35px;
   }
 
   .reason-card {
     width: 100%;
-    min-width: 0;
-    font-size: 2rem; /* さらに大きくして読みやすく */
-    padding: 30px;
+    font-size: 2.4rem; /* 読みやすい大きさに拡大 */
+    padding: 35px;
+    border-radius: 25px;
   }
 
-  /* 目次の文字も見やすいように拡大 */
-  .toc {
-    font-size: 2rem;
+  /* 商品カード内の文字 */
+  .product-card {
+    font-size: 2.4rem;
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* 横並びのグラフ名（商品Aなど）も大きく */
-  .item-label {
+  .product-info h3 {
+    font-size: 2.8rem;
+  }
+
+  /* thumb画像の下が詰まらないよう調整 */
+  .thumb {
+    margin-bottom: 20px;
+  }
+
+  /* フッター */
+  .footer {
     font-size: 2rem;
+    line-height: 1.8;
+    padding: 50px 20px;
   }
 }
+
 
