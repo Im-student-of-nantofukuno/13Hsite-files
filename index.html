@@ -2,13 +2,6 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-
   <title>日の出屋製菓を有名にしたい</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -44,7 +37,6 @@
 <section id="result" class="section">
   <h2>2. アンケート結果</h2>
   <p>私たちは知名度の視覚化につながるのではないかと思い、日の出屋製菓の商品の中で好きなものは何か、またおいしそうに感じるものは何かと、どうしてそれを選んだのかというアンケートを実施しました。以下がその結果です。</p>
-
   <div class="survey-box">
 
     <h3 class="sub-title">好きな商品と、おいしそうに感じる商品の比較</h3>
@@ -88,28 +80,29 @@
       </div>
     </div>
 
-    <!-- 理由：商品A -->
-    <div class="reason-block">
-      <h3 class="reason-title">商品A の選んだ理由</h3>
-      <div class="reason-cards">
-        <div class="reason-card">好きな理由をここに書きます。</div>
-        <div class="reason-card">おいしそうな理由をここに書きます。</div>
-      </div>
-    </div>
+  </div> <!-- ← survey-box の閉じタグ、ここでOK -->
 
-    <!-- 理由：商品B -->
-    <div class="reason-block">
-      <h3 class="reason-title">商品B の選んだ理由</h3>
-      <div class="reason-cards">
-        <div class="reason-card">好きな理由をここに書きます。</div>
-        <div class="reason-card">おいしそうな理由のここに書きます。</div>
-      </div>
+  <!-- 理由：商品A -->
+  <div class="reason-block">
+    <h3 class="reason-title">商品A の選んだ理由</h3>
+    <div class="reason-cards">
+      <div class="reason-card">好きな理由をここに書きます。</div>
+      <div class="reason-card">おいしそうな理由をここに書きます。</div>
     </div>
+  </div>
 
-  </div> <!-- ← ここで survey-box を閉じる  -->
+  <!-- 理由：商品B -->
+  <div class="reason-block">
+    <h3 class="reason-title">商品B の選んだ理由</h3>
+    <div class="reason-cards">
+      <div class="reason-card">好きな理由をここに書きます。</div>
+      <div class="reason-card">おいしそうな理由をここに書きます。</div>
+    </div>
+  </div>
 
 </section>
 
+<section id="features" class="section">
   <h2>3. それぞれの特徴</h2>
 
   <div class="product-card" id="product-a">
