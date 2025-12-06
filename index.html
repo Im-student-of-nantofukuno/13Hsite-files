@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <title>日の出屋製菓を有名にしたい</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1>日の出屋製菓をもっと有名にしたい！</h1>
+  <p class="subtitle">作成:南砺福野高等学校13H</p>
+</header>
+
+<nav class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#purpose">目的</a></li>
+    <li><a href="#result">アンケート結果</a></li>
+    <li><a href="#features">それぞれの特徴</a></li>
+  </ol>
+  <ul class="toc-sub">
+    <li><a href="#product-a">商品A</a></li>
+    <li><a href="#product-b">商品B</a></li>
+    <li><a href="#product-c">商品C</a></li>
+    <li><a href="#product-d">商品D</a></li>
+  </ul>
+</nav>
+
+<section id="purpose" class="section">
+  <h2>1. なぜサイトを作ったのか</h2>
+  <p>
+私たち南砺福野高等学校がある南砺市には、米菓の老舗企業・日の出屋製菓があります。日の出屋製菓は、複数のブランドを展開する「マルチブランド戦略」により、さまざまなお客様のニーズに応える商品を手掛けています。どの商品もとても美味しいのですが、その魅力が十分に伝わっていないのではないかと感じました。そこで私たちは、より多くの方に日の出屋製菓の魅力を知っていただくためにアンケート調査を行い、このウェブサイトを制作しました。
+  </p>
+</section>
+
+<section id="result" class="section">
+  <h2>2. アンケート結果</h2>
+  <p>私たちは知名度の視覚化につながるのではないかと思い、日の出屋製菓の商品の中で好きなものは何か、またおいしそうに感じるものは何かと、どうしてそれを選んだのかというアンケートを実施しました。以下がその結果です。</p>
+
+  <div class="survey-box">
+
+    <h3 class="sub-title">好きな商品と、おいしそうに感じる商品の比較</h3>
+
+    <div class="graph-legend">
+      <span class="legend-box" style="background:#d14a1f;"></span> 好きな商品
+      <span class="legend-box" style="background:#e8c59a;"></span> おいしそうな商品
+    </div>
+
+    <div class="double-bar-wrapper">
+      <div class="double-item">
+        <p class="item-label">商品A</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品B</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 50px;"></div>
+          <div class="bar-look" style="height: 90px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品C</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 30px;"></div>
+          <div class="bar-look" style="height: 40px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品D</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 20px;"></div>
+          <div class="bar-look" style="height: 25px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 理由：商品A -->
+    <div class="reason-block">
+      <h3 class="reason-title">商品A の選んだ理由</h3>
+      <div class="reason-cards">
+        <div class="reason-card">好きな理由をここに書きます。</div>
+        <div class="reason-card">おいしそうな理由をここに書きます。</div>
+      </div>
+    </div>
+
+    <!-- 理由：商品B -->
+    <div class="reason-block">
+      <h3 class="reason-title">商品B の選んだ理由</h3>
+      <div class="reason-cards">
+        <div class="reason-card">好きな理由をここに書きます。</div>
+        <div class="reason-card">おいしそうな理由のここに書きます。</div>
+      </div>
+    </div>
+
+  </div> <!-- ← ここで survey-box を閉じる  -->
+
+</section>
+
+  <h2>3. それぞれの特徴</h2>
+
+  <div class="product-card" id="product-a">
+    <div class="thumb"><img src="商品A.png" alt="商品A"></div>
+    <div class="product-info">
+      <h3>商品Aの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-b">
+    <div class="thumb"><img src="商品B.png" alt="商品B"></div>
+    <div class="product-info">
+      <h3>商品Bの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-c">
+    <div class="thumb"><img src="商品C.png" alt="商品C"></div>
+    <div class="product-info">
+      <h3>商品Cの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-d">
+    <div class="thumb">D</div>
+    <div class="product-info">
+      <h3>商品Dの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <p><a href="https://www.nantofukuno-h.tym.ed.jp/"><img src="南砺福野高等学校ロゴ.png" alt="南砺福野高等学校ロゴ" style="width:auto; height:16px;">南砺福野高等学校HP：https://www.nantofukuno-h.tym.ed.jp/</a></p>
+  <p><a href="https://www.hinodeya-seika.com/"><img src="日の出屋製菓ロゴ.svg" alt="日の出屋製菓ロゴ" style="width:auto; height:16px;">日の出屋製菓HP：https://www.hinodeya-seika.com/</a></p>
+</footer>
+
+</body>
+</html>
