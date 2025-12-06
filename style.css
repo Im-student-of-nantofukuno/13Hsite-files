@@ -235,3 +235,22 @@ h1, h2, h3 {
   margin-top: 20px;
 }
 
+@media screen and (max-width: 600px) {
+  /* 理由カードを縦並びにする */
+  .reason-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reason-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* 本文もスマホでは少しだけ縮める（読みやすさ優先） */
+  body {
+    font-size: 1.2rem;
+  }
+}
+
+
