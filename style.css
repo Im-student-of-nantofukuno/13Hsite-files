@@ -6,7 +6,7 @@ body {
   color: #2f2f2f;
   font-size: 0.75rem;  
 }
-
+ 
 h1, h2, h3 {
   font-family: "Shippori Mincho", serif;
 }
@@ -296,5 +296,6 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
