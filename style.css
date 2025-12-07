@@ -234,65 +234,37 @@ h1, h2, h3 {
 =========================== */
 @media screen and (max-width: 600px) {
 
-  /* 本文のベースフォントをさらに巨大化 */
+  /* 本文（p、li、a、その他テキスト）だけ大きくする */
   body {
-    font-size: 4.6rem;    /* ← 3.8rem → 4.6rem に拡大 */
+    font-size: 1.8rem;   /* ← PCの0.75rem の 2.4倍。ここで本文の基準サイズが決まる */
     line-height: 2.2;
   }
 
-  h1 { font-size: 6.0rem; }   /* タイトルさらに大きく */
-  h2 { font-size: 5.0rem; }
-  h3 { font-size: 4.4rem; }
+  /* h1, h2, h3 はいじらない（今のまま） */
 
-  /* 目次 */
+  /* TOC（目次の文字も本文扱いなので少し大きめ） */
   .toc {
-    font-size: 4.0rem;
-    padding: 40px;
+    font-size: 1.8rem;
   }
 
-  /* グラフタイトル */
-  .double-graph h3 {
-    font-size: 4.8rem;
-  }
-
-  /* 凡例 */
-  .graph-legend {
-    font-size: 4rem;
-  }
-
-  .legend-box {
-    width: 38px;
-    height: 38px;
-  }
-
-  /* 商品名（商品A〜） */
-  .item-label {
-    font-size: 4.2rem;
-  }
-
-  /* 理由カード（縦並び・巨大文字） */
+  /* 理由の本文 */
   .reason-card {
-    width: 100%;
-    font-size: 4.2rem;
-    padding: 50px;
+    font-size: 1.8rem;
+    padding: 30px;
   }
 
-  /* 商品カード */
+  /* 商品カードの説明文 */
   .product-card {
-    font-size: 4.2rem;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px;
+    font-size: 1.8rem;
   }
 
   .product-info h3 {
-    font-size: 5rem;
+    font-size: 3.6rem; /* 見出しはそのまま */
   }
 
   /* フッター */
   .footer {
-    font-size: 3.6rem;
-    padding: 70px 20px;
-    line-height: 2.3;
+    font-size: 1.6rem;
+    padding: 40px 20px;
   }
 }
