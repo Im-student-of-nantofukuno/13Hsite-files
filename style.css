@@ -233,72 +233,72 @@ h1, h2, h3 {
 =========================== */
 @media screen and (max-width: 600px) {
 
-  /* 本文はPCの約2.2倍に */
+  /* 本文（PCの1.4倍、これが自然） */
   body {
-    font-size: 1.6rem;
-    line-height: 2;
+    font-size: 1.05rem;
+    line-height: 1.9;
   }
 
-  /* タイトル類は現在のサイズ維持（ほんの少し小さく調整） */
-  h1 { font-size: 3.0rem; }
-  h2 { font-size: 2.6rem; }
-  h3 { font-size: 2.2rem; }
+  /* タイトル 少し小さく調整 */
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.9rem; }
+  h3 { font-size: 1.6rem; }
 
-  /* 目次の文字 */
+  /* 目次 */
   .toc {
-    font-size: 1.8rem;
-    padding: 25px;
+    font-size: 1.2rem;
+    padding: 20px;
   }
 
   /* グラフタイトル */
   .double-graph h3 {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
   }
 
   /* 凡例 */
   .graph-legend {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
   }
   .legend-box {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
   }
 
   /* 縦書きの商品名 */
   .item-label {
-    font-size: 2.0rem;
+    font-size: 1.3rem;
   }
 
   .bars {
-    height: 170px;
+    height: 150px;
   }
 
-  /* 理由カード：縦並びはそのまま */
+  /* 理由カード */
   .reason-cards {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
   }
 
   .reason-card {
     width: 100%;
-    font-size: 1.8rem;
-    padding: 28px;
+    font-size: 1.2rem;
+    padding: 22px;
   }
 
-  /* 商品カードの中身 */
+  /* 商品カード */
   .product-card {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
+    padding: 24px;
   }
 
   .product-info h3 {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
   }
 
   .footer {
-    font-size: 1.6rem;
-    padding: 50px 20px;
+    font-size: 1.1rem;
+    padding: 40px 20px;
   }
 }
