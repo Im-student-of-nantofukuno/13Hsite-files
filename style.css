@@ -233,13 +233,7 @@ h1, h2, h3 {
 =========================== */
 @media screen and (max-width: 600px) {
 
-  /* ▼ 全体をスマホ幅にフィット */
-  .double-graph {
-    width: 100%;
-    padding: 20px;
-  }
-
-  /* ▼ 商品ごと縦並び */
+  /* ▼ 1商品ずつ縦並び */
   .double-bar-wrapper {
     display: flex;
     flex-direction: column;
@@ -249,29 +243,45 @@ h1, h2, h3 {
 
   .double-item {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
-  /* ▼ 商品名（中央・横書き） */
+  /* ▼ 商品名（中央） */
   .item-label {
     writing-mode: horizontal-tb;
-    text-orientation: initial;
     margin-bottom: 8px;
     font-size: 1.3rem;
+    text-align: center;
   }
 
-  /* ▼ 棒をスマホ用に調整（細め・高さ減らす） */
+  /* ▼ 棒グラフを横並びにする（ここが重要） */
   .bars {
-    height: 120px;      /* ← ここ重要。飛び出しを防ぐ */
+    display: flex;
+    flex-direction: column;      /* ← 上下に並ぶ */
     gap: 10px;
+    width: 100%;                /* ← 親幅いっぱい */
+    height: auto;               /* ← 高さ固定を解除 */
   }
 
+  /* ▼ 横棒の見た目 */
   .bar-like,
   .bar-look {
-    width: 24px;        /* ← 横の棒太さをスマホ用に */
-    border-radius: 4px;
+    height: 22px;               /* ← 横棒の太さ */
+    border-radius: 6px;
+  }
+
+  /* ▼ 横幅を棒の長さとして使用（高さで伸ばすのを禁止） */
+  .bar-like {
+    background: #d14a1f;
+  }
+  .bar-look {
+    background: #e8c59a;
+  }
+
+  /* ▼ HTML 側の height:XXpx を width に置き換える */
+  .bar-like[style],
+  .bar-look[style] {
+    height: 22px !important;     /* 横棒の高さ固定 */
+    width: var(--w);             /* カスタム変数で幅を決定 */
   }
 
   /* ▼ 本文サイズ小さめ */
@@ -296,6 +306,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
