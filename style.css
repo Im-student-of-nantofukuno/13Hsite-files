@@ -256,11 +256,13 @@ h1, h2, h3 {
   /* ▼ 棒グラフを横並びにする（ここが重要） */
   .bars {
     display: flex;
-    flex-direction: column;      /* ← 上下に並ぶ */
+    flex-direction: column;
     gap: 10px;
-    width: 100%;                /* ← 親幅いっぱい */
-    height: auto;               /* ← 高さ固定を解除 */
-  }
+    width: 100%;
+    height: auto;
+    align-items: flex-start;   /* ← ★これが欠けている！ */
+}
+
 
   /* ▼ 横棒の見た目 */
   .bar-like,
@@ -306,6 +308,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
