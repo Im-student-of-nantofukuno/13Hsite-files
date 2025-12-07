@@ -1,9 +1,14 @@
 body {
   margin: 0;
-  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
   line-height: 1.7;
   background: #cfc4b2;
   color: #2f2f2f;
+  font-size: 0.75rem;  
+}
+
+h1, h2, h3 {
+  font-family: "Shippori Mincho", serif;
 }
 
 /* Header */
@@ -16,11 +21,12 @@ body {
 
 .subtitle {
   color: #ffe8d6;
+  font-size: 2.4rem;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 1.3rem;
 }
 
 /* TOC */
@@ -136,13 +142,11 @@ body {
 
 /* ---- アンケート背景（棒グラフ全体の背景） ---- */
 .survey-bg {
-  background: #fff3eb;        /* もともとのアンケート背景色 */
+  background: #fff3eb;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.12);
 }
-
-
 
 .survey-box h3 {
   margin: 0;
@@ -160,7 +164,6 @@ body {
   font-weight: bold;
 }
 
-/* カード2つ横並び */
 .reason-cards {
   display: flex;
   gap: 40px;
@@ -179,7 +182,6 @@ body {
   box-shadow: 0 3px 12px rgba(0,0,0,0.12);
 }
 
-
 /* Product cards */
 .product-card {
   display: flex;
@@ -194,7 +196,6 @@ body {
 
 .thumb {
   width: 120px;
-  /*画像の下にある四角の横幅。*/
   height: 80px;
   background: #f4ede4;
   border-radius: 10px;
@@ -205,10 +206,10 @@ body {
 }
 
 .thumb img {
-  width: 80%;     /* 親要素（thumb）の幅にフィット */
-  height: 80%;    /* 高さにもフィット */
-  object-fit: contain;  /* はみ出さないようにトリミング */
-  border-radius: 10%; /* thumb と同じ丸みを付ける */
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  border-radius: 10%;
 }
 
 /* Footer */
@@ -219,7 +220,7 @@ body {
   background: #f5e9dd;
 }
 
-/* 理由カード4つを並べるグリッド */
+/* 理由カード4つグリッド（PC） */
 .reason-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -227,12 +228,14 @@ body {
   margin-top: 20px;
 }
 
-/* ===== スマホ画面専用（幅600px以下） ===== */
+/* ===========================
+   スマホ（600px以下）
+   — PCとは完全に別調整 —
+=========================== */
 @media screen and (max-width: 600px) {
 
-  /* 本気で大きいフォントにする（PCの6〜7倍） */
   body {
-    font-size: 3.8rem;   /* ← 実質6倍強。もっと上げてもOK */
+    font-size: 3.8rem;
     line-height: 2.1;
   }
 
@@ -240,37 +243,32 @@ body {
   h2 { font-size: 4.0rem; }
   h3 { font-size: 3.4rem; }
 
-  /* 目次 */
   .toc {
     font-size: 3.2rem;
     padding: 35px;
   }
 
-  /* 棒グラフのタイトル */
   .double-graph h3 {
     font-size: 3.6rem;
   }
 
-  /* 凡例 */
   .graph-legend {
     font-size: 3rem;
   }
+
   .legend-box {
     width: 32px;
     height: 32px;
   }
 
-  /* 商品名（商品A〜） */
   .item-label {
     font-size: 3.4rem;
   }
 
-  /* 棒ラベル */
   .bars {
     height: 200px;
   }
 
-  /* 理由カード：縦並び & さらに巨大フォント */
   .reason-cards {
     flex-direction: column;
     gap: 40px;
@@ -282,7 +280,6 @@ body {
     padding: 40px;
   }
 
-  /* 商品カード */
   .product-card {
     font-size: 3.2rem;
     flex-direction: column;
@@ -294,13 +291,9 @@ body {
     font-size: 3.6rem;
   }
 
-  /* フッター */
   .footer {
     font-size: 2.6rem;
     padding: 60px 20px;
     line-height: 2;
   }
 }
-
-
-
