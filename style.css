@@ -21,12 +21,12 @@ h1, h2, h3 {
 
 .subtitle {
   color: #ffe8d6;
-  font-size: 2.4rem;
+  font-size: 1.3rem;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 2.4rem;
 }
 
 /* TOC */
@@ -308,6 +308,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
