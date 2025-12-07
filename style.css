@@ -1,14 +1,9 @@
 body {
   margin: 0;
-  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
   line-height: 1.7;
   background: #cfc4b2;
   color: #2f2f2f;
-  font-size: 0.75rem;
-}
-
-h1, h2, h3 {
-  font-family: "Shippori Mincho", serif;
 }
 
 /* Header */
@@ -21,12 +16,11 @@ h1, h2, h3 {
 
 .subtitle {
   color: #ffe8d6;
-  font-size: 5rem;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
 /* TOC */
@@ -307,5 +301,6 @@ h1, h2, h3 {
     line-height: 2;
   }
 }
+
 
 
