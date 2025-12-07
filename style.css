@@ -231,9 +231,7 @@ h1, h2, h3 {
 /* ===========================
    スマホ（600px以下）
    — PCとは完全に別調整 —
-=========================== */
-@media screen and (max-width: 600px) {
-
+=========================== */@media screen and (max-width: 600px) {
   body {
     font-size: 3.8rem;
     line-height: 2.1;
