@@ -232,6 +232,39 @@ h1, h2, h3 {
    スマホ（600px以下）
 =========================== */
 @media screen and (max-width: 600px) {
+  /* ★ 棒グラフ全体のレイアウトをスマホでは縦並びに */
+.double-bar-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+/* ★ 1商品ずつを中央寄せ・大きめに */
+.double-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ★ 縦書きの商品名の調整（少し小さく & 間隔調整） */
+.item-label {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    margin-bottom: 12px;
+    font-size: 1.4rem; /* 必要に応じて調整 */
+}
+
+/* ★ 棒をスマホでは少し太めに */
+.bars {
+    height: 160px;
+    gap: 16px;
+}
+
+.bar-like,
+.bar-look {
+    width: 30px;
+}
 
   /* ★ 本文サイズ（そのまま少し小さめ） */
   body {
@@ -259,3 +292,4 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
