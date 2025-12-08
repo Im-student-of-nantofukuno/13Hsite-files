@@ -13,9 +13,12 @@
   <p class="subtitle">作成:南砺福野高等学校13H</p>
 </header>
 
+<!-- ▼ 訪問者カウンター（Worker版） -->
 <div class="visitor-wrapper">
   <div class="visitor-box">
-    <p class="visitor-count-text">あなたは <span id="visitorCount">...</span> 人目の訪問者です。</p>
+    <p class="visitor-count-text">
+      あなたは <span id="visitorCount">...</span> 人目の訪問者です。
+    </p>
   </div>
 
   <div class="visitor-chart-box">
@@ -48,7 +51,9 @@
 
 <section id="result" class="section">
   <h2>2. アンケート結果</h2>
+
   <p>私たちは知名度の視覚化につながるのではないかと思い、日の出屋製菓の商品の中で好きなものは何か、またおいしそうに感じるものは何かと、どうしてそれを選んだのかというアンケートを実施しました。以下がその結果です。</p>
+
   <div class="survey-box">
 
     <h3 class="sub-title">好きな商品と、おいしそうに感じる商品の比較</h3>
@@ -62,39 +67,38 @@
       <div class="double-item">
         <p class="item-label">商品A</p>
         <div class="bars">
-          <div class="bar-like" style="height: 80px; --w:80px;"></div>
-          <div class="bar-look" style="height: 60px; --w:60px;"></div>
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
         </div>
       </div>
 
       <div class="double-item">
         <p class="item-label">商品B</p>
         <div class="bars">
-          <div class="bar-like" style="height: 80px; --w:50px;"></div>
-          <div class="bar-look" style="height: 60px; --w:90px;"></div>
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
         </div>
       </div>
 
       <div class="double-item">
         <p class="item-label">商品C</p>
         <div class="bars">
-          <div class="bar-like" style="height: 80px; --w:30px;"></div>
-          <div class="bar-look" style="height: 60px; --w:40px;"></div>
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
         </div>
       </div>
 
       <div class="double-item">
         <p class="item-label">商品D</p>
         <div class="bars">
-          <div class="bar-like" style="height: 80px; --w:20px;"></div>
-          <div class="bar-look" style="height: 60px; --w:25px;"></div>
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
         </div>
       </div>
     </div>
 
-  </div> <!-- ← survey-box の閉じタグ、ここでOK -->
+  </div>
 
-  <!-- 理由：商品A -->
   <div class="reason-block">
     <h3 class="reason-title">商品A の選んだ理由</h3>
     <div class="reason-cards">
@@ -103,7 +107,6 @@
     </div>
   </div>
 
-  <!-- 理由：商品B -->
   <div class="reason-block">
     <h3 class="reason-title">商品B の選んだ理由</h3>
     <div class="reason-cards">
@@ -152,239 +155,51 @@
 </section>
 
 <footer class="footer">
-  <p><a href="https://www.nantofukuno-h.tym.ed.jp/"><img src="南砺福野高等学校ロゴ.png" alt="南砺福野高等学校ロゴ" style="width:auto; height:16px;">南砺福野高等学校HP：https://www.nantofukuno-h.tym.ed.jp/</a></p>
-  <p><a href="https://www.hinodeya-seika.com/"><img src="日の出屋製菓ロゴ.svg" alt="日の出屋製菓ロゴ" style="width:auto; height:16px;">日の出屋製菓HP：https://www.hinodeya-seika.com/</a></p>
+  <p><a href="https://www.nantofukuno-h.tym.ed.jp/"><img src="南砺福野高等学校ロゴ.png" alt="南砺福野高等学校ロゴ" style="width:auto; height:16px;"> 南砺福野高等学校HP</a></p>
+  <p><a href="https://www.hinodeya-seika.com/"><img src="日の出屋製菓ロゴ.svg" alt="日の出屋製菓ロゴ" style="width:auto; height:16px;"> 日の出屋製菓HP</a></p>
 </footer>
 
-  
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-/*
-  CountAPI-based visitor counter + daily data + Chart.js graph
-  - LocalStorage used to ensure 1 view / day per client
-  - No server-side required
-  - Insert this script near the end of the page (before </body>)
-*/
-
-(function(){
-  // --- 設定 ---
-  const NAMESPACE = '13Hsite_files_counter'; // 任意の英数字ネームスペースに変更可
-  const TOTAL_KEY = 'total'; // 総数キー
-  const DAILY_COLLECTION_PREFIX = 'day-'; // 日付キーの接頭辞 (例 day-2025-01-01)
-  const LAUNCH_DATE = '2025-01-01'; // ここをカウント開始日に合わせてください
-  const PIXELS_PER_DAY = 100; // 1日あたりの横幅(px)
-  const MAX_LABELS = 12; // 横ラベルの最大個数（間引き量の目安）
-
-  // --- ヘルパー ---
-  function getDateStr(d = new Date()) {
-    const y = d.getFullYear();
-    const m = String(d.getMonth()+1).padStart(2,'0');
-    const dd = String(d.getDate()).padStart(2,'0');
-    return `${y}-${m}-${dd}`;
-  }
-  function visitedKey(dateStr){ return `visited_${dateStr}`; }
-  function dailyApiKey(dateStr){ return DAILY_COLLECTION_PREFIX + dateStr; }
-  // URL helpers
-  function countapiHitURL(namespace, key){
-    // POST-like increment endpoint (GET also works)
-    return `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
-  }
-  function countapiGetURL(namespace, key){
-    return `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
-  }
-
-  // --- インクリメント（LocalStorage 判定あり） ---
-  async function incrementIfNeeded(){
-    const today = getDateStr();
-    if (localStorage.getItem(visitedKey(today))) {
-      // すでに今日カウント済み → 取得のみ
-      return await fetchTotals();
-    }
-
-    // 増やす：日別キーと総数をhit（CountAPIが自動で作る）
-    try {
-      // increment daily
-      await fetch(countapiHitURL(NAMESPACE, dailyApiKey(today))).then(r => r.json());
-      // increment total
-      const totalResp = await fetch(countapiHitURL(NAMESPACE, TOTAL_KEY)).then(r => r.json());
-      // mark visited
-      localStorage.setItem(visitedKey(today), '1');
-      // return totals (we already have total value from response)
-      // But we'll also fetch day-by-day list for chart
-      const { labels, data } = await fetchDailySeries();
-      return { total: totalResp.value || 0, labels, data };
-    } catch (e) {
-      console.error('CountAPI hit failed', e);
-      // fallback: try to still fetch totals
-      return await fetchTotals();
-    }
-  }
-
-  // --- 日別データ取得（ラベル array と data array を返す） ---
-  async function fetchDailySeries(){
-    const start = new Date(LAUNCH_DATE);
-    const end = new Date();
-    const labels = [];
-    const keys = [];
-    for (let d = new Date(start); d <= end; d.setDate(d.getDate()+1)) {
-      const s = getDateStr(new Date(d));
-      labels.push(s);
-      keys.push(dailyApiKey(s));
-    }
-
-    // fetch all counts concurrently (small number of days -> ok)
-    const promises = keys.map(k => fetch(countapiGetURL(NAMESPACE, k)).then(r => {
-      if (!r.ok) return 0;
-      return r.json().then(obj => obj.value || 0).catch(()=>0);
-    }).catch(()=>0));
-    const data = await Promise.all(promises);
-    return { labels, data };
-  }
-
-  // --- 総数だけ取得（get） ---
-  async function fetchTotals(){
-    try {
-      const totalResp = await fetch(countapiGetURL(NAMESPACE, TOTAL_KEY));
-      const totalVal = (totalResp.ok) ? (await totalResp.json()).value || 0 : 0;
-      const { labels, data } = await fetchDailySeries();
-      return { total: totalVal, labels, data };
-    } catch (e) {
-      console.error('fetchTotals failed', e);
-      return { total: 0, labels: [], data: [] };
-    }
-  }
-
-  // --- Chart.js 描画 ---
-  let visitorChart = null;
-  function renderChart(labels, data){
-    const canvas = document.getElementById('visitorChart');
-    if (!canvas) return;
-    const days = labels.length;
-    const desiredWidth = Math.max(600, days * PIXELS_PER_DAY);
-    canvas.style.width = desiredWidth + 'px';
-    // destroy previous
-    if (visitorChart) {
-      visitorChart.destroy();
-      visitorChart = null;
-    }
-
-    // ラベル間引き
-    const step = Math.max(1, Math.ceil(labels.length / MAX_LABELS));
-
-    const ctx = canvas.getContext('2d');
-    visitorChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '訪問者数',
-          data: data,
-          backgroundColor: '#d14a1f',
-          borderRadius: 4,
-          barThickness: Math.min(36, PIXELS_PER_DAY * 0.45)
-        }]
-      },
-      options: {
-        responsive: false,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            ticks: {
-              callback: function(value, index) {
-                return (index % step === 0) ? labels[index] : '';
-              },
-              autoSkip: false
-            },
-            grid: { display: false },
-          },
-          y: {
-            beginAtZero: true,
-            title: { display: true, text: '訪問者数' }
-          }
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: { mode: 'index', intersect: false }
-        }
-      }
-    });
-  }
-
-  // --- 初期処理 ---
-  async function initVisitorSection(){
-    // increment if needed and get totals + series
-    const res = await incrementIfNeeded();
-    // set total display
-    const totalEl = document.getElementById('visitor-number');
-    if (totalEl) totalEl.textContent = res.total || 0;
-    // render chart
-    if (res.labels && res.labels.length > 0) {
-      renderChart(res.labels, res.data);
-    } else {
-      // no data yet: empty chart or message
-      const canvas = document.getElementById('visitorChart');
-      if (canvas) {
-        canvas.parentNode.innerHTML = '<p style="color:#666;">まだデータがありません。</p>';
-      }
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    initVisitorSection().catch(e => console.error(e));
-  });
-
-})();
-</script>
-<!-- Chart.js の読み込み（必要） -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// =========================
-// CountAPI で訪問者数を取得
-// =========================
-const NAMESPACE = "nantofukuno-hinodeya";
-const KEY = "visitor-counter";
+// =====================================
+//   Cloudflare Worker からデータ取得
+// =====================================
+const WORKER_URL = "https://worker-name.3143250079.workers.dev/"; // ←あなたのURLに置き換える
 
-// 訪問者数を1増やす
-fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
-  .then(res => res.json())
-  .then(data => {
-    const count = data.value;
-    document.getElementById("visitorCount").textContent = count;
-    addDataAndDrawChart(count);
-  });
+async function loadVisitorData() {
+  try {
+    const res = await fetch(WORKER_URL);
+    const data = await res.json();
 
-// =========================
-//   ローカルに履歴保存
-// =========================
-function addDataAndDrawChart(currentCount) {
-  const today = new Date().toLocaleDateString("ja-JP");
+    // 訪問者数を表示
+    document.getElementById("visitorCount").textContent =
+      data.totalVisitors ?? "...";
 
-  // 履歴を localStorage に保存
-  let history = JSON.parse(localStorage.getItem("visitHistory") || "[]");
+    // daily データがあるときグラフを描画
+    drawVisitorChart(data.daily);
 
-  // すでに今日のデータがある？ → 上書き
-  const existing = history.find(item => item.date === today);
-  if (existing) {
-    existing.count = currentCount;
-  } else {
-    history.push({ date: today, count: currentCount });
+  } catch (e) {
+    console.error("訪問者データ取得エラー:", e);
+    document.getElementById("visitorCount").textContent = "取得失敗";
   }
-
-  localStorage.setItem("visitHistory", JSON.stringify(history));
-
-  drawChart(history);
 }
 
-// =========================
-//   グラフ描画
-// =========================
-function drawChart(history) {
-  const ctx = document.getElementById("visitorChart").getContext("2d");
+// =====================================
+//        グラフ描画（折れ線）
+// =====================================
+function drawVisitorChart(dailyObj) {
+  const canvas = document.getElementById("visitorChart");
+  const ctx = canvas.getContext("2d");
 
-  const labels = history.map(item => item.date);
-  const values = history.map(item => item.count);
+  if (!dailyObj || Object.keys(dailyObj).length === 0) {
+    canvas.parentNode.innerHTML = "<p>まだデータがありません。</p>";
+    return;
+  }
+
+  const labels = Object.keys(dailyObj);
+  const values = Object.values(dailyObj);
 
   new Chart(ctx, {
     type: "line",
@@ -393,29 +208,25 @@ function drawChart(history) {
       datasets: [{
         label: "訪問者数",
         data: values,
+        borderColor: "#d14a1f",
+        backgroundColor: "rgba(209,74,31,0.3)",
         borderWidth: 2,
-        tension: 0.3
+        tension: 0.3,
+        fill: true
       }]
     },
     options: {
       responsive: true,
       scales: {
-        x: { ticks: { maxRotation: 45, minRotation: 0 } },
+        x: { ticks: { maxRotation: 45 } },
         y: { beginAtZero: true }
       }
     }
   });
 }
+
+loadVisitorData();
 </script>
 
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
