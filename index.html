@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-
-<body>
+<body>  
 <header class="hero">
   <h1>日の出屋製菓をもっと有名にしたい！</h1>
   <p class="subtitle">作成:南砺福野高等学校13H</p>
 </header>
 
-<!-- ▼▼▼ 訪問者カウンター（Cloudflare Worker版） ▼▼▼ -->
+<!-- ▼ 訪問者カウンター（Worker版） -->
 <div class="visitor-wrapper">
   <div class="visitor-box">
     <p class="visitor-count-text">
@@ -26,7 +26,6 @@
     <canvas id="visitorChart"></canvas>
   </div>
 </div>
-<!-- ▲▲▲ 訪問者カウンターここまで ▲▲▲ -->
 
 <nav class="toc">
   <h2>目次</h2>
@@ -35,73 +34,193 @@
     <li><a href="#result">アンケート結果</a></li>
     <li><a href="#features">それぞれの特徴</a></li>
   </ol>
+  <ul class="toc-sub">
+    <li><a href="#product-a">商品A</a></li>
+    <li><a href="#product-b">商品B</a></li>
+    <li><a href="#product-c">商品C</a></li>
+    <li><a href="#product-d">商品D</a></li>
+  </ul>
 </nav>
 
 <section id="purpose" class="section">
   <h2>1. なぜサイトを作ったのか</h2>
   <p>
-    私たち南砺福野高等学校がある南砺市には、米菓の老舗企業・日の出屋製菓があります。
-    日の出屋製菓は、複数のブランドを展開する「マルチブランド戦略」により、さまざまなお客様のニーズに応える商品を手掛けています。
-    この魅力がより広く伝わるよう、このウェブサイトを制作しました。
+私たち南砺福野高等学校がある南砺市には、米菓の老舗企業・日の出屋製菓があります。日の出屋製菓は、複数のブランドを展開する「マルチブランド戦略」により、さまざまなお客様のニーズに応える商品を手掛けています。どの商品もとても美味しいのですが、その魅力が十分に伝わっていないのではないかと感じました。そこで私たちは、より多くの方に日の出屋製菓の魅力を知っていただくためにアンケート調査を行い、このウェブサイトを制作しました。
   </p>
 </section>
 
 <section id="result" class="section">
   <h2>2. アンケート結果</h2>
-  <p>
-    私たちは知名度の視覚化につながるのではないかと思い、好きな商品と、おいしそうに感じる商品のアンケートを実施しました。
-  </p>
+
+  <p>私たちは知名度の視覚化につながるのではないかと思い、日の出屋製菓の商品の中で好きなものは何か、またおいしそうに感じるものは何かと、どうしてそれを選んだのかというアンケートを実施しました。以下がその結果です。</p>
+
+  <div class="survey-box">
+
+    <h3 class="sub-title">好きな商品と、おいしそうに感じる商品の比較</h3>
+
+    <div class="graph-legend">
+      <span class="legend-box" style="background:#d14a1f;"></span> 好きな商品
+      <span class="legend-box" style="background:#e8c59a;"></span> おいしそうな商品
+    </div>
+
+    <div class="double-bar-wrapper">
+      <div class="double-item">
+        <p class="item-label">商品A</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品B</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品C</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
+        </div>
+      </div>
+
+      <div class="double-item">
+        <p class="item-label">商品D</p>
+        <div class="bars">
+          <div class="bar-like" style="height: 80px;"></div>
+          <div class="bar-look" style="height: 60px;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reason-block">
+    <h3 class="reason-title">商品A の選んだ理由</h3>
+    <div class="reason-cards">
+      <div class="reason-card">好きな理由をここに書きます。</div>
+      <div class="reason-card">おいしそうな理由をここに書きます。</div>
+    </div>
+  </div>
+
+  <div class="reason-block">
+    <h3 class="reason-title">商品B の選んだ理由</h3>
+    <div class="reason-cards">
+      <div class="reason-card">好きな理由をここに書きます。</div>
+      <div class="reason-card">おいしそうな理由をここに書きます。</div>
+    </div>
+  </div>
+
 </section>
 
 <section id="features" class="section">
   <h2>3. それぞれの特徴</h2>
+
+  <div class="product-card" id="product-a">
+    <div class="thumb"><img src="商品A.png" alt="商品A"></div>
+    <div class="product-info">
+      <h3>商品Aの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-b">
+    <div class="thumb"><img src="商品B.png" alt="商品B"></div>
+    <div class="product-info">
+      <h3>商品Bの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-c">
+    <div class="thumb"><img src="商品C.png" alt="商品C"></div>
+    <div class="product-info">
+      <h3>商品Cの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
+  <div class="product-card" id="product-d">
+    <div class="thumb"><img src="商品D.png" alt="商品D"></div>
+    <div class="product-info">
+      <h3>商品Dの名前</h3>
+      <p>ここに説明文が入ります。</p>
+    </div>
+  </div>
+
 </section>
 
 <footer class="footer">
-  <p><a href="https://www.nantofukuno-h.tym.ed.jp/">南砺福野高等学校 HP</a></p>
-  <p><a href="https://www.hinodeya-seika.com/">日の出屋製菓 HP</a></p>
+  <p><a href="https://www.nantofukuno-h.tym.ed.jp/"><img src="南砺福野高等学校ロゴ.png" alt="南砺福野高等学校ロゴ" style="width:auto; height:16px;"> 南砺福野高等学校HP</a></p>
+  <p><a href="https://www.hinodeya-seika.com/"><img src="日の出屋製菓ロゴ.svg" alt="日の出屋製菓ロゴ" style="width:auto; height:16px;"> 日の出屋製菓HP</a></p>
 </footer>
 
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-// ===============================
-// Cloudflare Worker 設定
-// ===============================
-const WORKER_URL = "https://worker-name.3143250079.workers.dev/";
+// =====================================
+//   Cloudflare Worker からデータ取得
+// =====================================
+const WORKER_URL = "https://worker-name.3143250079.workers.dev/"; // ←あなたのURLに置き換える
 
-// ローカル：その日のアクセスを 1 回だけカウント
-function hasVisitedToday() {
-  const today = new Date().toISOString().split("T")[0];
-  return localStorage.getItem("visited-" + today) === "1";
+// ===============================
+//   1日1回だけカウントさせる処理
+// ===============================
+function shouldCountToday() {
+  const today = new Date().toISOString().slice(0, 10);
+  const key = "visited_" + today;
+
+  if (localStorage.getItem(key)) {
+    return false;  // 今日すでにカウント済み
+  }
+
+  // 初回 → 訪問済みに設定
+  localStorage.setItem(key, "1");
+  return true;
 }
 
-function markVisited() {
-  const today = new Date().toISOString().split("T")[0];
-  localStorage.setItem("visited-" + today, "1");
-}
-
-// Worker からデータ取得（必要なら増加）
 async function loadVisitorData() {
-  const doIncrement = !hasVisitedToday();
-  const url = WORKER_URL + (doIncrement ? "?increment=1" : "");
+  try {
 
-  const res = await fetch(url);
-  const json = await res.json();
+    // 今日すでにカウント済みなら、カウントアップなし
+    const url = shouldCountToday()
+      ? WORKER_URL + "?count=1"   // ← 増やす
+      : WORKER_URL;               // ← 取得だけ
 
-  if (json.ok) {
-    if (doIncrement) markVisited();
-    return json;
-  } else {
-    console.error("Worker error:", json);
-    return null;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    document.getElementById("visitorCount").textContent =
+      data.totalVisitors ?? "...";
+
+    drawVisitorChart(data.daily);
+
+  } catch (e) {
+    console.error("訪問者データ取得エラー:", e);
+    document.getElementById("visitorCount").textContent = "取得失敗";
   }
 }
 
-// グラフ描画
-function drawChart(dailyData) {
-  const ctx = document.getElementById("visitorChart").getContext("2d");
 
-  const labels = Object.keys(dailyData);
-  const values = Object.values(dailyData);
+// =====================================
+//        グラフ描画（折れ線）
+// =====================================
+function drawVisitorChart(dailyObj) {
+  const canvas = document.getElementById("visitorChart");
+  const ctx = canvas.getContext("2d");
+
+  if (!dailyObj || Object.keys(dailyObj).length === 0) {
+    canvas.parentNode.innerHTML = "<p>まだデータがありません。</p>";
+    return;
+  }
+
+  const labels = Object.keys(dailyObj);
+  const values = Object.values(dailyObj);
 
   new Chart(ctx, {
     type: "line",
@@ -110,31 +229,24 @@ function drawChart(dailyData) {
       datasets: [{
         label: "訪問者数",
         data: values,
+        borderColor: "#d14a1f",
+        backgroundColor: "rgba(209,74,31,0.3)",
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 3,
+        fill: true
       }]
     },
     options: {
       responsive: true,
       scales: {
+        x: { ticks: { maxRotation: 45 } },
         y: { beginAtZero: true }
       }
     }
   });
 }
 
-// 初期処理
-async function init() {
-  const data = await loadVisitorData();
-
-  if (!data) return;
-
-  document.getElementById("visitorCount").textContent = data.totalVisitors;
-  drawChart(data.daily);
-}
-
-init();
+loadVisitorData();
 </script>
 
 </body>
