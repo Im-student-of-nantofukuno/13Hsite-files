@@ -229,9 +229,50 @@ h1, h2, h3 {
 }
 
 /* ===========================
+   訪問者カウンター・グラフの箱
+=========================== */
+.visitor-wrapper {
+  width: min(90%, 900px);
+  margin: 30px auto;
+}
+
+.visitor-box,
+.visitor-chart-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.visitor-count-text {
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.visitor-chart-box h3 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* グラフの幅調整 */
+#visitorChart {
+  width: 100% !important;
+  max-height: 250px;
+}
+
+/* ===========================
    スマホ（600px以下）
 =========================== */
 @media screen and (max-width: 600px) {
+    .visitor-wrapper {
+    width: 94%;
+  }
+  .visitor-count-text {
+    font-size: 1.4rem;
+  }
+}
 
   /* ▼ 1商品ずつ縦並び */
   .double-bar-wrapper {
@@ -308,6 +349,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
