@@ -8,7 +8,186 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+/*
+  CountAPI-based visitor counter + daily data + Chart.js graph
+  - LocalStorage used to ensure 1 view / day per client
+  - No server-side required
+  - Insert this script near the end of the page (before </body>)
+*/
 
+(function(){
+  // --- 設定 ---
+  const NAMESPACE = '13Hsite_files_counter'; // 任意の英数字ネームスペースに変更可
+  const TOTAL_KEY = 'total'; // 総数キー
+  const DAILY_COLLECTION_PREFIX = 'day-'; // 日付キーの接頭辞 (例 day-2025-01-01)
+  const LAUNCH_DATE = '2025-01-01'; // ここをカウント開始日に合わせてください
+  const PIXELS_PER_DAY = 100; // 1日あたりの横幅(px)
+  const MAX_LABELS = 12; // 横ラベルの最大個数（間引き量の目安）
+
+  // --- ヘルパー ---
+  function getDateStr(d = new Date()) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    return `${y}-${m}-${dd}`;
+  }
+  function visitedKey(dateStr){ return `visited_${dateStr}`; }
+  function dailyApiKey(dateStr){ return DAILY_COLLECTION_PREFIX + dateStr; }
+  // URL helpers
+  function countapiHitURL(namespace, key){
+    // POST-like increment endpoint (GET also works)
+    return `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
+  }
+  function countapiGetURL(namespace, key){
+    return `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
+  }
+
+  // --- インクリメント（LocalStorage 判定あり） ---
+  async function incrementIfNeeded(){
+    const today = getDateStr();
+    if (localStorage.getItem(visitedKey(today))) {
+      // すでに今日カウント済み → 取得のみ
+      return await fetchTotals();
+    }
+
+    // 増やす：日別キーと総数をhit（CountAPIが自動で作る）
+    try {
+      // increment daily
+      await fetch(countapiHitURL(NAMESPACE, dailyApiKey(today))).then(r => r.json());
+      // increment total
+      const totalResp = await fetch(countapiHitURL(NAMESPACE, TOTAL_KEY)).then(r => r.json());
+      // mark visited
+      localStorage.setItem(visitedKey(today), '1');
+      // return totals (we already have total value from response)
+      // But we'll also fetch day-by-day list for chart
+      const { labels, data } = await fetchDailySeries();
+      return { total: totalResp.value || 0, labels, data };
+    } catch (e) {
+      console.error('CountAPI hit failed', e);
+      // fallback: try to still fetch totals
+      return await fetchTotals();
+    }
+  }
+
+  // --- 日別データ取得（ラベル array と data array を返す） ---
+  async function fetchDailySeries(){
+    const start = new Date(LAUNCH_DATE);
+    const end = new Date();
+    const labels = [];
+    const keys = [];
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate()+1)) {
+      const s = getDateStr(new Date(d));
+      labels.push(s);
+      keys.push(dailyApiKey(s));
+    }
+
+    // fetch all counts concurrently (small number of days -> ok)
+    const promises = keys.map(k => fetch(countapiGetURL(NAMESPACE, k)).then(r => {
+      if (!r.ok) return 0;
+      return r.json().then(obj => obj.value || 0).catch(()=>0);
+    }).catch(()=>0));
+    const data = await Promise.all(promises);
+    return { labels, data };
+  }
+
+  // --- 総数だけ取得（get） ---
+  async function fetchTotals(){
+    try {
+      const totalResp = await fetch(countapiGetURL(NAMESPACE, TOTAL_KEY));
+      const totalVal = (totalResp.ok) ? (await totalResp.json()).value || 0 : 0;
+      const { labels, data } = await fetchDailySeries();
+      return { total: totalVal, labels, data };
+    } catch (e) {
+      console.error('fetchTotals failed', e);
+      return { total: 0, labels: [], data: [] };
+    }
+  }
+
+  // --- Chart.js 描画 ---
+  let visitorChart = null;
+  function renderChart(labels, data){
+    const canvas = document.getElementById('visitorChart');
+    if (!canvas) return;
+    const days = labels.length;
+    const desiredWidth = Math.max(600, days * PIXELS_PER_DAY);
+    canvas.style.width = desiredWidth + 'px';
+    // destroy previous
+    if (visitorChart) {
+      visitorChart.destroy();
+      visitorChart = null;
+    }
+
+    // ラベル間引き
+    const step = Math.max(1, Math.ceil(labels.length / MAX_LABELS));
+
+    const ctx = canvas.getContext('2d');
+    visitorChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '訪問者数',
+          data: data,
+          backgroundColor: '#d14a1f',
+          borderRadius: 4,
+          barThickness: Math.min(36, PIXELS_PER_DAY * 0.45)
+        }]
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            ticks: {
+              callback: function(value, index) {
+                return (index % step === 0) ? labels[index] : '';
+              },
+              autoSkip: false
+            },
+            grid: { display: false },
+          },
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: '訪問者数' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { mode: 'index', intersect: false }
+        }
+      }
+    });
+  }
+
+  // --- 初期処理 ---
+  async function initVisitorSection(){
+    // increment if needed and get totals + series
+    const res = await incrementIfNeeded();
+    // set total display
+    const totalEl = document.getElementById('visitor-number');
+    if (totalEl) totalEl.textContent = res.total || 0;
+    // render chart
+    if (res.labels && res.labels.length > 0) {
+      renderChart(res.labels, res.data);
+    } else {
+      // no data yet: empty chart or message
+      const canvas = document.getElementById('visitorChart');
+      if (canvas) {
+        canvas.parentNode.innerHTML = '<p style="color:#666;">まだデータがありません。</p>';
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    initVisitorSection().catch(e => console.error(e));
+  });
+
+})();
+</script>
+  
 <header class="hero">
   <h1>日の出屋製菓をもっと有名にしたい！</h1>
   <p class="subtitle">作成:南砺福野高等学校13H</p>
@@ -148,6 +327,7 @@
 
 </body>
 </html>
+
 
 
 
