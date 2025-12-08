@@ -49,4 +49,93 @@
 <section id="result" class="section">
   <h2>2. アンケート結果</h2>
   <p>
-    私たちは知名度の視覚化につながるのではないかと思い、好きな商品と、おいしそうに感じる商品の
+    私たちは知名度の視覚化につながるのではないかと思い、好きな商品と、おいしそうに感じる商品のアンケートを実施しました。
+  </p>
+</section>
+
+<section id="features" class="section">
+  <h2>3. それぞれの特徴</h2>
+</section>
+
+<footer class="footer">
+  <p><a href="https://www.nantofukuno-h.tym.ed.jp/">南砺福野高等学校 HP</a></p>
+  <p><a href="https://www.hinodeya-seika.com/">日の出屋製菓 HP</a></p>
+</footer>
+
+<script>
+// ===============================
+// Cloudflare Worker 設定
+// ===============================
+const WORKER_URL = "https://worker-name.3143250079.workers.dev/";
+
+// ローカル：その日のアクセスを 1 回だけカウント
+function hasVisitedToday() {
+  const today = new Date().toISOString().split("T")[0];
+  return localStorage.getItem("visited-" + today) === "1";
+}
+
+function markVisited() {
+  const today = new Date().toISOString().split("T")[0];
+  localStorage.setItem("visited-" + today, "1");
+}
+
+// Worker からデータ取得（必要なら増加）
+async function loadVisitorData() {
+  const doIncrement = !hasVisitedToday();
+  const url = WORKER_URL + (doIncrement ? "?increment=1" : "");
+
+  const res = await fetch(url);
+  const json = await res.json();
+
+  if (json.ok) {
+    if (doIncrement) markVisited();
+    return json;
+  } else {
+    console.error("Worker error:", json);
+    return null;
+  }
+}
+
+// グラフ描画
+function drawChart(dailyData) {
+  const ctx = document.getElementById("visitorChart").getContext("2d");
+
+  const labels = Object.keys(dailyData);
+  const values = Object.values(dailyData);
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "訪問者数",
+        data: values,
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+// 初期処理
+async function init() {
+  const data = await loadVisitorData();
+
+  if (!data) return;
+
+  document.getElementById("visitorCount").textContent = data.totalVisitors;
+  drawChart(data.daily);
+}
+
+init();
+</script>
+
+</body>
+</html>
