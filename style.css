@@ -68,6 +68,11 @@ h1, h2, h3 {
 }
 
 /* Graph */
+.chart-container {
+  max-width: 500px;   /* ← 今より細くする。300～600あたりで調整可 */
+  margin: 0 auto;     /* 中央寄せ */
+}
+
 .double-graph {
   width: min(90%, 900px);
   margin: 40px auto;
@@ -349,6 +354,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
