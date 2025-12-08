@@ -336,8 +336,82 @@
 
 })();
 </script>
+<!-- Chart.js の読み込み（必要） -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// =========================
+// CountAPI で訪問者数を取得
+// =========================
+const NAMESPACE = "nantofukuno-hinodeya";
+const KEY = "visitor-counter";
+
+// 訪問者数を1増やす
+fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
+  .then(res => res.json())
+  .then(data => {
+    const count = data.value;
+    document.getElementById("visitorCount").textContent = count;
+    addDataAndDrawChart(count);
+  });
+
+// =========================
+//   ローカルに履歴保存
+// =========================
+function addDataAndDrawChart(currentCount) {
+  const today = new Date().toLocaleDateString("ja-JP");
+
+  // 履歴を localStorage に保存
+  let history = JSON.parse(localStorage.getItem("visitHistory") || "[]");
+
+  // すでに今日のデータがある？ → 上書き
+  const existing = history.find(item => item.date === today);
+  if (existing) {
+    existing.count = currentCount;
+  } else {
+    history.push({ date: today, count: currentCount });
+  }
+
+  localStorage.setItem("visitHistory", JSON.stringify(history));
+
+  drawChart(history);
+}
+
+// =========================
+//   グラフ描画
+// =========================
+function drawChart(history) {
+  const ctx = document.getElementById("visitorChart").getContext("2d");
+
+  const labels = history.map(item => item.date);
+  const values = history.map(item => item.count);
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "訪問者数",
+        data: values,
+        borderWidth: 2,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { ticks: { maxRotation: 45, minRotation: 0 } },
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+</script>
+
+  
 </body>
 </html>
+
 
 
 
