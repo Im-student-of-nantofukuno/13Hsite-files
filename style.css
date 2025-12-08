@@ -68,11 +68,6 @@ h1, h2, h3 {
 }
 
 /* Graph */
-.chart-container {
-  max-width: 500px;   /* ← 今より細くする。300～600あたりで調整可 */
-  margin: 0 auto;     /* 中央寄せ */
-}
-
 .double-graph {
   width: min(90%, 900px);
   margin: 40px auto;
@@ -101,6 +96,7 @@ h1, h2, h3 {
   justify-content: space-around;
   gap: 30px;
   margin-top: 20px;
+  
 }
 
 .double-item {
@@ -121,6 +117,9 @@ h1, h2, h3 {
   gap: 8px;
   align-items: flex-end;
   height: 150px;
+  width: 300px; /* ← ここを好きな幅に調整（300～600px） */
+}
+
 }
 
 .bar-like {
@@ -354,6 +353,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
