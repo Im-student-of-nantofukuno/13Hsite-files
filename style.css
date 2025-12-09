@@ -141,7 +141,6 @@ h1, h2, h3 {
   border-radius: 30px;
   text-align: center;
   margin: 40px 0;
-  width: 200px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
@@ -354,6 +353,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
