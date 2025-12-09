@@ -118,7 +118,7 @@ h1, h2, h3 {
   align-items: flex-end;
   height: 150px;
   width: 300px; /* ← ここを好きな幅に調整（300～600px） */
-  padding-left: 40px;
+  padding-left: 100px;
 }
 
 }
@@ -356,6 +356,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
