@@ -159,34 +159,6 @@ h1, h2, h3 {
   font-size: 32px;
 }
 
-/* ===== 理由 ===== */
-.reason-block {
-  margin-bottom: 50px;
-}
-
-.reason-title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.reason-cards {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.reason-card {
-  flex: 1;
-  min-width: 260px;
-  background: #fff3eb;
-  padding: 25px;
-  border-radius: 30px;
-  text-align: center;
-  font-size: 18px;
-  color: #2f2f2f;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-}
 
 /* Product cards */
 .product-card {
@@ -356,6 +328,7 @@ h1, h2, h3 {
     margin-right: 0;
   }
 }
+
 
 
 
