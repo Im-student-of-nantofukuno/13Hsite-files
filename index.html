@@ -163,30 +163,41 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// =====================================
-//   Cloudflare Worker からデータ取得
-// =====================================
+/* =====================================
+   Cloudflare Worker からデータ取得（JST対応）
+   既存の <script> を丸ごとこの内容に置き換えてください
+   ===================================== */
+
 const WORKER_URL = "https://worker-name.3143250079.workers.dev/"; // ←あなたのURLに置き換える
 
+// --- JST 日付取得（yyyy-mm-dd） ---
+function getJSTDate() {
+  const now = new Date();
+  const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000); // UTC+9
+  return jst.toISOString().slice(0, 10);
+}
+
 // ===============================
-//   1日1回だけカウントさせる処理
+//   1日1回だけカウントさせる処理（JST基準）
 // ===============================
 function shouldCountToday() {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getJSTDate();             // ← ここを JST に合わせる
   const key = "visited_" + today;
 
   if (localStorage.getItem(key)) {
     return false;  // 今日すでにカウント済み
   }
 
-  // 初回 → 訪問済みに設定
+  // 初回アクセス（今日） → 訪問済みに設定
   localStorage.setItem(key, "1");
   return true;
 }
 
+// ===============================
+//   データ取得 + 描画
+// ===============================
 async function loadVisitorData() {
   try {
-
     // 今日すでにカウント済みなら、カウントアップなし
     const url = shouldCountToday()
       ? WORKER_URL + "?count=1"   // ← 増やす
@@ -196,33 +207,48 @@ async function loadVisitorData() {
     const data = await res.json();
 
     document.getElementById("visitorCount").textContent =
-      data.totalVisitors ?? "...";
+      (data && typeof data.totalVisitors !== "undefined") ? data.totalVisitors : "...";
 
     drawVisitorChart(data.daily);
 
   } catch (e) {
     console.error("訪問者データ取得エラー:", e);
-    document.getElementById("visitorCount").textContent = "取得失敗";
+    const el = document.getElementById("visitorCount");
+    if (el) el.textContent = "取得失敗";
+    const canvas = document.getElementById("visitorChart");
+    if (canvas) canvas.parentNode.innerHTML = "<p style='color:#666;'>データ取得に失敗しました。</p>";
   }
 }
-
 
 // =====================================
 //        グラフ描画（折れ線）
 // =====================================
+// Chart.js のインスタンスを再利用/破棄する
+let _visitorChart = null;
+
 function drawVisitorChart(dailyObj) {
   const canvas = document.getElementById("visitorChart");
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
+  // 古いグラフがあれば破棄
+  if (_visitorChart) {
+    try { _visitorChart.destroy(); } catch(e){/* ignore */ }
+    _visitorChart = null;
+  }
+
   if (!dailyObj || Object.keys(dailyObj).length === 0) {
-    canvas.parentNode.innerHTML = "<p>まだデータがありません。</p>";
+    canvas.parentNode.innerHTML = "<p style='color:#666;'>まだデータがありません。</p>";
     return;
   }
 
-  const labels = Object.keys(dailyObj);
-  const values = Object.values(dailyObj);
+  // dailyObj のキー（date）順ソート（念のため）
+  const keys = Object.keys(dailyObj).sort();
+  const labels = keys;
+  const values = keys.map(k => Number(dailyObj[k] || 0));
 
-  new Chart(ctx, {
+  // 描画
+  _visitorChart = new Chart(ctx, {
     type: "line",
     data: {
       labels: labels,
@@ -230,25 +256,42 @@ function drawVisitorChart(dailyObj) {
         label: "訪問者数",
         data: values,
         borderColor: "#d14a1f",
-        backgroundColor: "rgba(209,74,31,0.3)",
+        backgroundColor: "rgba(209,74,31,0.18)",
         borderWidth: 2,
-        tension: 0.3,
-        fill: true
+        tension: 0.25,
+        fill: true,
+        pointRadius: 3,
+        pointHoverRadius: 6
       }]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { mode: "index", intersect: false }
+      },
       scales: {
-        x: { ticks: { maxRotation: 45 } },
-        y: { beginAtZero: true }
+        x: {
+          ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 10 }
+        },
+        y: {
+          beginAtZero: true,
+          suggestedMax: Math.max(...values) + 1
+        }
       }
     }
   });
 }
 
-loadVisitorData();
+// ページ読み込みで実行
+document.addEventListener("DOMContentLoaded", function(){
+  loadVisitorData();
+});
 </script>
+
 
 </body>
 </html>
+
 
