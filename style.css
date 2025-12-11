@@ -317,40 +317,45 @@ h1, h2, h3 {
 
 @media screen and (min-width: 601px) {
 
+  /* 全体を中央に寄せつつ、幅を固定 */
   .double-bar-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;  /* 均等配置 */
-    gap: 20px;                      /* 小さめの隙間 */
+    justify-content: center;     /* 均等ではなく中央寄せ */
+    gap: 40px;                   /* 各商品間の距離 */
+    flex-wrap: wrap;             /* はみ出す場合は自動で折り返す */
   }
 
+  /* 各商品ブロック */
   .double-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 150px;                /* ★ 商品ごとの幅を固定（狭くなる） */
   }
 
+  /* 棒グラフ本体 */
   .bars {
     display: flex;
     flex-direction: row;
-    gap: 10px;               /* 棒の隙間 */
     align-items: flex-end;
-    height: 150px;
-    width: auto;             /* ★ 自動幅に変更 */
-    padding-left: 0;         /* ★ 不要な空白を消す */
+    gap: 10px;
+    height: 140px;               /* 棒グラフ全体の高さ */
+    width: 100%;                 /* ★ 商品の幅の中に収まる */
+    padding: 0;                  /* ★ 余計な余白無し */
   }
 
+  /* 棒の太さ（PC用） */
   .bar-like,
   .bar-look {
-    width: 20px;             /* 棒の太さ（PC用） */
+    width: 22px;
     border-radius: 4px;
   }
 
-  /* inline の height を使って縦に伸ばす */
+  /* HTML の height が棒の高さになる */
   .bar-like[style],
   .bar-look[style] {
-    width: 20px !important;
-    height: auto; /* HTML の height:XXpx が反映される */
+    width: 22px !important;
+    height: auto;
   }
 }
-
