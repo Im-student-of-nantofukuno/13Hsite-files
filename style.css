@@ -47,6 +47,7 @@ h1, h2, h3 {
 .toc a {
   font-weight: 600;
   color: #2f4f3e;
+
 }
 .toc a:hover {
   color: #d14a1f;
@@ -96,7 +97,6 @@ h1, h2, h3 {
   justify-content: space-around;
   gap: 30px;
   margin-top: 20px;
-  
 }
 
 .double-item {
@@ -119,8 +119,6 @@ h1, h2, h3 {
   height: 150px;
   width: 300px; /* ← ここを好きな幅に調整（300～600px） */
   padding-left: 150px;
-}
-
 }
 
 .bar-like {
@@ -245,13 +243,14 @@ h1, h2, h3 {
    スマホ（600px以下）
 =========================== */
 @media screen and (max-width: 600px) {
-    .visitor-wrapper {
+
+  .visitor-wrapper {
     width: 94%;
   }
+
   .visitor-count-text {
     font-size: 1.4rem;
   }
-}
 
   /* ▼ 1商品ずつ縦並び */
   .double-bar-wrapper {
@@ -280,56 +279,40 @@ h1, h2, h3 {
     gap: 10px;
     width: 100%;
     height: auto;
-    align-items: flex-start;   /* ← ★これが欠けている！ */
+    align-items: flex-start;
     padding-left: 30px;
-}
+  }
 
-
-  /* ▼ 横棒の見た目 */
   .bar-like,
   .bar-look {
-    height: 22px;               /* ← 横棒の太さ */
+    height: 22px;
     border-radius: 6px;
   }
 
-  /* ▼ 横幅を棒の長さとして使用（高さで伸ばすのを禁止） */
-  .bar-like {
-    background: #d14a1f;
-  }
-  .bar-look {
-    background: #e8c59a;
-  }
-
-  /* ▼ HTML 側の height:XXpx を width に置き換える */
   .bar-like[style],
   .bar-look[style] {
-    height: 22px !important;     /* 横棒の高さ固定 */
-    width: var(--w);             /* カスタム変数で幅を決定 */
+    height: 22px !important;
+    width: var(--w);
   }
 
-  /* ▼ 本文サイズ小さめ */
   body {
     font-size: 0.95rem;
     line-height: 1.9;
   }
 
-  /* ▼ セクション幅調整（左右のズレ解消） */
   .section {
     width: 94%;
     padding: 20px;
     margin: 25px auto;
   }
 
-  /* ▼ h2 のズレ解消 */
   .section h2 {
     font-size: 1.6rem;
     border-left: 4px solid #2f4f3e;
     padding-left: 8px;
-    margin-left: 0;
-    margin-right: 0;
   }
-}
 
+}   /* ← スマホ用の閉じカッコはここだけ！ */
 
 
 @media screen and (min-width: 601px) {
@@ -366,3 +349,4 @@ h1, h2, h3 {
     height: auto; /* inline の height が使われる */
   }
 }
+
