@@ -117,8 +117,8 @@ h1, h2, h3 {
   gap: 8px;
   align-items: flex-end;
   height: 150px;
-  width: 300px; /* ← ここを好きな幅に調整（300～600px） */
-  padding-left: 150px;
+  width: 100px; /* ← ここを好きな幅に調整（300～600px） */
+  padding-left: 50px;
 }
 
 .bar-like {
@@ -353,3 +353,4 @@ h1, h2, h3 {
     height: auto; /* HTML の height:XXpx が反映される */
   }
 }
+
