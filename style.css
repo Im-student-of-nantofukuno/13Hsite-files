@@ -142,7 +142,7 @@ h1, h2, h3 {
   border-radius: 30px;
   text-align: center;
   margin: 40px auto;    /* ← auto が必要！ */
-  width: 800px;
+  width: min(90%,800px)
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
@@ -240,6 +240,7 @@ h1, h2, h3 {
   max-height: 250px;
 }
 
+
 /* ===========================
    スマホ（600px以下）
 =========================== */
@@ -329,15 +330,39 @@ h1, h2, h3 {
   }
 }
 
-.survey-box {
-  background: #fff3eb;
-  padding: 40px;
-  border-radius: 30px;
-  text-align: center;
-  margin: 40px auto;    /* ← auto が必要！ */
-  width: 100px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+
+
+@media screen and (min-width: 601px) {
+  .double-bar-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 30px;
+  }
+
+  .double-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bars {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: flex-end;
+    height: 150px;
+  }
+
+  .bar-like,
+  .bar-look {
+    width: 22px;
+    border-radius: 4px;
+  }
+
+  .bar-like[style],
+  .bar-look[style] {
+    width: 22px !important;
+    height: auto; /* inline の height が使われる */
+  }
 }
-
-
-
