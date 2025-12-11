@@ -329,18 +329,15 @@ h1, h2, h3 {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+.survey-box {
+  background: #fff3eb;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  margin: 40px auto;    /* ← auto が必要！ */
+  width: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
 
 
 
