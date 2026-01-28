@@ -102,7 +102,7 @@ h1, h2, h3 {
 .double-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  grid-template-rows: 60px 1fr;
 }
 
 .item-label {
@@ -110,13 +110,14 @@ h1, h2, h3 {
   text-orientation: upright;
   font-size: 18px;
   margin-bottom: 10px;
+  align-items: flex-end;
 }
 
 .bars {
   display: flex;
   gap: 8px;
-  align-items: flex-end;
-  height: 150px;
+  align-items: flex-end; /* ← 棒を下でそろえる */
+  height: 150px; 
   width: 100px; /* ← ここを好きな幅に調整（300～600px） */
   padding-left: 50px;
 }
@@ -359,3 +360,4 @@ h1, h2, h3 {
     height: auto;
   }
 }
+
