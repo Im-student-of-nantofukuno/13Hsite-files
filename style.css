@@ -110,7 +110,6 @@ h1, h2, h3 {
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-size: 18px;
-  margin-bottom: 10px;
   align-items: flex-end;
 }
 
@@ -270,7 +269,6 @@ h1, h2, h3 {
   /* ▼ 商品名（中央） */
   .item-label {
     writing-mode: horizontal-tb;
-    margin-bottom: 8px;
     font-size: 1.3rem;
     text-align: center;
   }
@@ -329,12 +327,11 @@ h1, h2, h3 {
     flex-wrap: wrap;             /* はみ出す場合は自動で折り返す */
   }
 
-  /* 各商品ブロック */
   .double-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 150px;                /* ★ 商品ごとの幅を固定（狭くなる） */
+    display: grid;              /* ← flex をやめる */
+    grid-template-rows: 80px 1fr;
+    justify-items: center;
+    width: 150px;
   }
 
   /* 棒グラフ本体 */
@@ -362,7 +359,3 @@ h1, h2, h3 {
     height: auto;
   }
 }
-
-
-
-
