@@ -100,9 +100,9 @@ h1, h2, h3 {
 }
 
 .double-item {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   grid-template-rows: 60px 1fr;
+  justify-items: center;
 }
 
 .item-label {
@@ -361,5 +361,6 @@ h1, h2, h3 {
     height: auto;
   }
 }
+
 
 
