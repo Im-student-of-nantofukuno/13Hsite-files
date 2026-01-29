@@ -101,7 +101,7 @@ h1, h2, h3 {
 
 .double-item {
   display: grid;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 80px 1fr; /* 上：文字 / 下：グラフ */
   justify-items: center;
 }
 
@@ -116,12 +116,13 @@ h1, h2, h3 {
 
 .bars {
   display: flex;
-  gap: 8px;
-  align-items: flex-end; /* ← 棒を下でそろえる */
-  height: 150px; 
-  width: 100px; /* ← ここを好きな幅に調整（300～600px） */
-  padding-left: 50px;
+  align-items: flex-end; /* ← 棒の下ぞろえ */
+  justify-content: center;
+  height: 150px;
+  width: 100px;
+  padding: 0;            /* ← 余計なズレ防止 */
 }
+
 
 .bar-like {
   width: 22px;
@@ -361,6 +362,7 @@ h1, h2, h3 {
     height: auto;
   }
 }
+
 
 
 
