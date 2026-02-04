@@ -207,6 +207,8 @@ async function loadVisitorData() {
 let _visitorChart = null;
 
 function drawVisitorChart(dailyObj) {
+  const releaseDate = '2026-01-15';  // 公開日（グラフの背景色の分かれ目）
+  
   const canvas = document.getElementById("visitorChart");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
@@ -248,7 +250,16 @@ function drawVisitorChart(dailyObj) {
         label: "訪問者数",
         data: values,
         borderColor: "#d14a1f",
-        backgroundColor: "rgba(209,74,31,0.18)",
+        backgroundColor: (ctx) => {
+  const index = ctx.dataIndex;
+  const date = labels[index];
+
+  return date < releaseDate
+    ? "rgba(180, 230, 180, 0.3)"  // 公開前：薄い緑
+    : "rgba(0, 0, 0, 0)";
+},
+fill: true,
+        
         borderWidth: 2,
         tension: 0.25,
         fill: true,
@@ -276,6 +287,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
 
 
