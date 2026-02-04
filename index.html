@@ -243,35 +243,44 @@ function drawVisitorChart(dailyObj) {
   }
 
   _visitorChart = new Chart(ctx, {
+    
     type: "line",
     data: {
       labels,
       datasets: [{
         label: "訪問者数",
         data: values,
-        borderColor: "#d14a1f",
-        backgroundColor: (ctx) => {
-  const index = ctx.dataIndex;
-  const date = labels[index];
-
-  return date < releaseDate
-    ? "rgba(180, 230, 180, 0.3)"  // 公開前：薄い緑
-    : "rgba(0, 0, 0, 0)";
-},
-fill: true,
-        
+        borderColor: "#d14a1f",       
         borderWidth: 2,
         tension: 0.25,
         fill: true,
         pointRadius: 3
       }]
     },
+    plugins: [{
+    beforeDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const xScale = scales.x;
+      if (!chartArea) return;
+
+      const releaseX = xScale.getPixelForValue(releaseDate);
+
+      ctx.save();
+      ctx.fillStyle = "rgba(120, 200, 120, 0.6)";
+      ctx.fillRect(
+        chartArea.left,
+        chartArea.top,
+        releaseX - chartArea.left,
+        chartArea.bottom - chartArea.top
+      );
+      ctx.restore();
+    }
+  }],
     options: {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: {
-          beginAtZero: true
+        y: {beginAtZero: true
         }
       }
     }
@@ -287,10 +296,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
-
-
-
-
-
-
