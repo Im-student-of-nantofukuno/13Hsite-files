@@ -158,6 +158,11 @@ h1, h2, h3 {
   align-items: flex-start;
 }
 
+.product-info {
+  flex: 1;
+  min-width: 0;
+}
+
 .thumb {
   width: 120px;
   height: 80px;
@@ -356,4 +361,5 @@ h1, h2, h3 {
     height: auto;
   }
 }
+
 
