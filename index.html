@@ -254,7 +254,9 @@ function drawVisitorChart(dailyObj) {
         borderWidth: 2,
         tension: 0.25,
         fill: true,
-        pointRadius: 3
+        pointRadius: 0,
+        pointHoverRadius: 6,
+        pointHitRadius: 10,
       }]
     },
     plugins: [{
@@ -292,8 +294,5 @@ document.addEventListener("DOMContentLoaded", function(){
   loadVisitorData();
 });
 </script>
-
-
 </body>
 </html>
-
