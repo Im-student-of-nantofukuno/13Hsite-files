@@ -211,9 +211,8 @@ function drawVisitorChart(dailyObj) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
-  // 古いグラフがあれば破棄
   if (_visitorChart) {
-    try { _visitorChart.destroy(); } catch(e){/* ignore */ }
+    _visitorChart.destroy();
     _visitorChart = null;
   }
 
@@ -222,16 +221,29 @@ function drawVisitorChart(dailyObj) {
     return;
   }
 
-  // dailyObj のキー（date）順ソート（念のため）
-  const keys = Object.keys(dailyObj).sort();
-  const labels = keys;
-  const values = keys.map(k => Number(dailyObj[k] || 0));
+  // --- 日付を Date に変換 ---
+  const dates = Object.keys(dailyObj).sort();
+  const start = new Date(dates[0]);
+  const end = new Date(dates[dates.length - 1]);
 
-  // 描画
+  const labels = [];
+  const values = [];
+
+  // --- 1日ずつ進めて穴埋め ---
+  for (
+    let d = new Date(start);
+    d <= end;
+    d.setDate(d.getDate() + 1)
+  ) {
+    const key = d.toISOString().slice(0, 10);
+    labels.push(key);
+    values.push(dailyObj[key] ?? 0); // ← 無ければ0
+  }
+
   _visitorChart = new Chart(ctx, {
     type: "line",
     data: {
-      labels: labels,
+      labels,
       datasets: [{
         label: "訪問者数",
         data: values,
@@ -240,30 +252,21 @@ function drawVisitorChart(dailyObj) {
         borderWidth: 2,
         tension: 0.25,
         fill: true,
-        pointRadius: 3,
-        pointHoverRadius: 6
+        pointRadius: 3
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { mode: "index", intersect: false }
-      },
       scales: {
-        x: {
-          ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 10 }
-        },
         y: {
-          beginAtZero: true,
-          suggestedMax: Math.max(...values) + 1
+          beginAtZero: true
         }
       }
     }
   });
 }
-
+  
 // ページ読み込みで実行
 document.addEventListener("DOMContentLoaded", function(){
   loadVisitorData();
@@ -273,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
 
 
