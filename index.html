@@ -281,6 +281,30 @@ function drawVisitorChart(dailyObj) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            generateLabels(chart) {
+              return [{
+                text: [
+                  "限定公開時の訪問者",
+                  "限定公開時はほとんどが生徒で、",
+                  "数名がアンケートのURLからご覧にお越しくださいました。"
+                ],
+                fillStyle: "rgba(120, 200, 120, 0.6)",
+                strokeStyle: "rgba(120, 200, 120, 0.6)",
+                lineWidth: 0,
+                hidden: false
+              }];
+            }
+          }
+        },
+        tooltip: {
+          mode: "index",
+          intersect: false
+        }
+      },
       scales: {
         y: {beginAtZero: true
         }
@@ -296,3 +320,4 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 </body>
 </html>
+
