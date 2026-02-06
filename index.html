@@ -284,7 +284,15 @@ function drawVisitorChart(dailyObj) {
       plugins: {
         legend: {
           display: true,
+          align: 'center',
           labels: {
+            boxWidth: 18,
+            padding: 20,
+            font: {
+              family: '"Shippori Mincho", serif',
+              size: 14,
+              weight: '600'
+            },
             generateLabels(chart) {
               return [{
                 text: [
@@ -320,4 +328,3 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 </body>
 </html>
-
