@@ -69,6 +69,26 @@ h1, h2, h3 {
 }
 
 /* Graph */
+.chart-note {
+  text-align: center;
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 10px 0 15px;
+}
+
+.chart-note-title {
+  font-weight: 600;
+}
+
+.chart-note .legend-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: rgba(120, 200, 120, 0.6);
+  margin-right: 6px;
+  vertical-align: middle;
+}
 
 .graph-legend {
   display: flex;
@@ -361,5 +381,6 @@ h1, h2, h3 {
     height: auto;
   }
 }
+
 
 
