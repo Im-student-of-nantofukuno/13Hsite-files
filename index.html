@@ -20,9 +20,11 @@
       あなたは <span id="visitorCount">...</span> 人目の訪問者です。
     </p>
   </div>
-
   <div class="visitor-chart-box">
     <h3>これまでの訪問者数の推移</h3>
+    <div class="chart-note">
+      <span class="legend-box"></span>
+      <span class="chart-note-title">限定公開時の訪問者</span><br>限定公開時はほとんどが生徒で、数名がアンケートのURLからご覧にお越しくださいました。</div>
     <canvas id="visitorChart"></canvas>
   </div>
 </div>
@@ -283,30 +285,7 @@ function drawVisitorChart(dailyObj) {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: true,
-          align: 'center',
-          labels: {
-            boxWidth: 18,
-            padding: 20,
-            font: {
-              family: '"Shippori Mincho", serif',
-              size: 14,
-              weight: '600'
-            },
-            generateLabels(chart) {
-              return [{
-                text: [
-                  "限定公開時の訪問者",
-                  "限定公開時はほとんどが生徒で、",
-                  "数名がアンケートのURLからご覧にお越しくださいました。"
-                ],
-                fillStyle: "rgba(120, 200, 120, 0.6)",
-                strokeStyle: "rgba(120, 200, 120, 0.6)",
-                lineWidth: 0,
-                hidden: false
-              }];
-            }
-          }
+          display: false,
         },
         tooltip: {
           mode: "index",
