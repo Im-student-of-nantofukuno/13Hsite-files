@@ -281,22 +281,28 @@ function drawVisitorChart(dailyObj) {
     }
   }],
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          mode: "index",
-          intersect: false
-        }
-      },
-      scales: {
-        y: {beginAtZero: true
-        }
-      }
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+      top: 24   // ← タイトル下に説明文を入れる余白
     }
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      mode: "index",
+      intersect: false
+    }
+  },
+  scales: {
+    y: {
+      beginAtZero: true
+    }
+  }
+}
   });
 }
   
@@ -307,3 +313,4 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 </body>
 </html>
+
