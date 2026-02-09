@@ -266,8 +266,7 @@ h1, h2, h3 {
    .thumb {
      margin-bottom: 10px;
    }
- }
-
+ 
    .visitor-wrapper {
      width: 94%;
    }
@@ -338,6 +337,9 @@ h1, h2, h3 {
 }   /* ← スマホ用の閉じカッコはここだけ！ */
 
 
+/* ===========================
+   パソコン（600px以上）
+=========================== */
 @media screen and (min-width: 601px) {
 
   .double-bar-wrapper {
@@ -373,3 +375,4 @@ h1, h2, h3 {
     border-radius: 4px;
   }
 }
+
