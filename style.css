@@ -340,47 +340,36 @@ h1, h2, h3 {
 
 @media screen and (min-width: 601px) {
 
-  /* 全体を中央に寄せつつ、幅を固定 */
   .double-bar-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;     /* 均等ではなく中央寄せ */
-    gap: 40px;                   /* 各商品間の距離 */
-    flex-wrap: wrap;             /* はみ出す場合は自動で折り返す */
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
   }
 
   .double-item {
-    display: grid;              /* ← flex をやめる */
+    display: grid;
     grid-template-rows: 80px 1fr;
     justify-items: center;
     width: 150px;
   }
 
-  /* 棒グラフ本体 */
+  /* ★ PCでは必ず縦棒にする */
   .bars {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;      /* ← ここが重要 */
     align-items: flex-end;
     gap: 10px;
-    height: 140px;               /* 棒グラフ全体の高さ */
-    width: 100%;                 /* ★ 商品の幅の中に収まる */
-    padding: 0;                  /* ★ 余計な余白無し */
+    height: 140px;
+    width: 100%;
+    padding: 0;
   }
 
-  /* 棒の太さ（PC用） */
   .bar-like,
   .bar-look {
     width: 22px;
+    height: auto;             /* ← 高さは inline style に任せる */
     border-radius: 4px;
   }
-
-  /* HTML の height が棒の高さになる */
-  .bar-like[style],
-  .bar-look[style] {
-    width: 22px !important;
-    height: auto;
-  }
 }
-
-
-
