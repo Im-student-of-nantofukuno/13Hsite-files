@@ -344,23 +344,22 @@ h1, h2, h3 {
 
   .double-bar-wrapper {
     display: grid;
-    flex-direction: row;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 40px;
-    flex-wrap: wrap;
+    justify-items: center;
   }
 
   .double-item {
     display: grid;
     grid-template-rows: 80px 1fr;
     justify-items: center;
-    width: 150px;
+    width: 100%;   /* ← 固定幅をやめる */
+    max-width: 160px;
   }
 
-  /* ★ PCでは必ず縦棒にする */
   .bars {
     display: flex;
-    flex-direction: row;      /* ← ここが重要 */
+    flex-direction: row;
     align-items: flex-end;
     gap: 10px;
     height: 140px;
@@ -371,9 +370,6 @@ h1, h2, h3 {
   .bar-like,
   .bar-look {
     width: 22px;
-    height: auto;             /* ← 高さは inline style に任せる */
     border-radius: 4px;
   }
 }
-
-
