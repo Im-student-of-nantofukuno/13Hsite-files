@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://im-student-of-nantofukuno.github.io/13Hsite-files/sitemap.xml
